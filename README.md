@@ -1,27 +1,70 @@
 # RecaptchaBlackgeeks
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.7.
+This is just very simple Angular 5 component that implements Image-Text Recaptcha.
 
-## Development server
+### HTML View
+![Image of BlackGeeks-Recaptcha]
+(https://i.imgur.com/o4clLc6.png)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Installation
+--------------------------------------
 
-## Code scaffolding
+Install it from npm:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+npm install recaptcha-blackgeeks --save
+```
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+## Usage
 
-## Running unit tests
+### Module
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```typescript
+...
+import { BlackgeeksRecaptchaModule } from 'recaptcha-blackgeeks';
+...
+```
 
-## Running end-to-end tests
+```typescript
+ ...
+@NgModule({
+  imports: [...,BlackgeeksRecaptchaModule]
+  })
+  ...
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### View
 
-## Further help
+Use in template like below
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```html
+ <blackgeeks-recaptcha></blackgeeks-recaptcha>
+```
+
+
+## Methods
+
+To access the methods, use [@ViewChild](https://angular.io/docs/ts/latest/api/core/index/ViewChild-decorator.html).
+
+### Import
+```typescript
+import { ViewChild } from '@angular/core';
+import { RecaptchaComponent } from 'recaptcha-blackgeeks';
+
+export class RegisterComponent {
+  @ViewChild(RecaptchaComponent) captcha: RecaptchaComponent;
+}
+```
+
+
+### Usage
+You can request a new captcha to be displayed:
+```typescript
+this.captcha.reset();
+```
+
+The previous response can be retrieved:
+```typescript
+let status = this.captcha.getResponse();
+```
